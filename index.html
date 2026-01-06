@@ -3,283 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theus Shops | Premium Gamer Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Theus Shops | O Shopping de Tudo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #ee4d2d;
-            --accent: #00f2ff;
-            --bg: #0b0b0d;
-            --card-bg: #16161a;
+            --secondary: #2673dd;
+            --bg: #f5f5f5;
+            --text: #333;
+            --border: #e0e0e0;
         }
 
         body {
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            color: var(--text);
         }
 
-        /* Navbar Superior */
-        nav {
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(15px);
+        /* Barra de Alerta e Segurança */
+        .safety-bar {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
             padding: 10px 5%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            height: 60px; /* Tamanho ideal para a sua logo */
-            width: auto;
-            border-radius: 5px;
-            transition: 0.3s;
-            filter: drop-shadow(0 0 5px rgba(238, 77, 45, 0.5));
-        }
-
-        .nav-logo img:hover {
-            filter: drop-shadow(0 0 15px var(--primary));
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 14px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
-        }
-
-        /* Hero Section (Banner) */
-        .hero {
-            height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(11,11,13,1)), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 1px solid #222;
-        }
-
-        .hero h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5em;
-            margin: 10px 0;
-            text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--primary);
-            font-size: 1.2em;
-            letter-spacing: 5px;
-            font-weight: bold;
-        }
-
-        /* Sessão de Categorias */
-        .section-title {
-            padding: 60px 5% 30px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            letter-spacing: 2px;
-        }
-
-        .section-title::after {
-            content: "";
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(to right, var(--primary), transparent);
-        }
-
-        /* Container de Produtos */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            padding: 0 5% 80px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid #222;
-            overflow: hidden;
-            transition: 0.4s ease;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-12px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(238, 77, 45, 0.2);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: 0.6s;
-        }
-
-        .card:hover .card-img {
-            transform: scale(1.1);
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .tag {
-            font-size: 11px;
-            background: rgba(0, 242, 255, 0.1);
-            padding: 4px 12px;
-            border-radius: 4px;
-            color: var(--accent);
-            text-transform: uppercase;
-            font-weight: bold;
-            border: 1px solid var(--accent);
-        }
-
-        .card-title {
-            margin: 15px 0 10px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #eee;
-        }
-
-        .price {
-            font-size: 28px;
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .buy-btn {
-            display: block;
-            text-align: center;
-            background: linear-gradient(45deg, #ee4d2d, #ff7337);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .buy-btn:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        footer {
-            background: #050505;
-            padding: 50px;
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
+            font-size: 13px;
             color: #666;
         }
 
-        /* Estilo para Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0b0b0d; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        /* Header Estilo Marketplace */
+        header {
+            background: #fff;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--primary);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Menu Geral de Departamentos */
+        .dept-nav {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 0 5%;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            gap: 25px;
+        }
+
+        .dept-nav a {
+            padding: 15px 0;
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .dept-nav a:hover {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        /* Banner Principal Variado */
+        .main-banner {
+            background: linear-gradient(90deg, #222, #444);
+            color: #fff;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .main-banner h1 { margin: 0; font-size: 2.5em; }
+        .main-banner p { color: var(--primary); font-weight: bold; font-size: 1.2em; }
+
+        /* Grid de Produtos Geral */
+        .container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #bbb;
+        }
+
+        .item-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-details {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .item-cat { font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
+        .item-name { font-size: 15px; margin: 8px 0; color: #333; height: 36px; overflow: hidden; line-height: 1.2; }
+        
+        .stars { color: #ffbc00; font-size: 12px; margin-bottom: 10px; }
+
+        .price-box { margin-top: auto; }
+        .old-p { font-size: 12px; color: #999; text-decoration: line-through; }
+        .new-p { font-size: 22px; color: #333; font-weight: bold; }
+        .parcela { font-size: 12px; color: #28a745; }
+
+        .buy-link {
+            display: block;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .buy-link:hover { opacity: 0.9; }
+
+        /* Footer Robusto */
+        footer {
+            background: #fff;
+            border-top: 2px solid var(--primary);
+            padding: 40px 5%;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .secure-icons { display: flex; gap: 20px; opacity: 0.6; }
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="nav-logo">
-            <img src="https://i.postimg.cc/ZnK5r79X/logo.jpg" alt="Theus Shops Logo">
-        </a>
-        <div class="nav-links">
-            <a href="#setup">Setup</a>
-            <a href="#perifericos">Periféricos</a>
-            <a href="#hardware">Hardware</a>
-            <a href="#suporte">Suporte</a>
-        </div>
-    </nav>
+    <div class="safety-bar">
+        <span>🔒 Ambiente Seguro e Criptografado</span>
+        <span>📞 Suporte 24h</span>
+        <span>🚚 Enviamos para todo Brasil</span>
+    </div>
 
-    <section class="hero">
-        <p>EQUIPAMENTOS DE ELITE</p>
-        <h2>THEUS SHOPS</h2>
-        <div style="color: #666; font-size: 0.9em; margin-top: 20px;">Role para baixo e confira os achadinhos</div>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/ZnK5r79X/logo.jpg" alt="Theus Shops">
+        </a>
+        <div class="search-container">
+            <input type="text" placeholder="Procure qualquer produto na Theus Shops...">
+            <button class="search-btn">BUSCAR</button>
+        </div>
+    </header>
+
+    <div class="dept-nav">
+        <a href="#">TUDO</a>
+        <a href="#">ELETRÔNICOS</a>
+        <a href="#">AUTOMOTIVO</a>
+        <a href="#">MODA</a>
+        <a href="#">CASA</a>
+        <a href="#">ESPORTES</a>
+        <a href="#">BEBE</a>
+    </div>
+
+    <section class="main-banner">
+        <h1>OFERTAS GERAIS - THEUS SHOPS</h1>
+        <p>Até 70% de Desconto nos Achadinhos do Mês</p>
     </section>
 
-    <div id="perifericos" class="section-title">PERIFÉRICOS GAMER</div>
-
-    <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=500&q=80" class="card-img">
-            <div class="card-body">
-                <span class="tag">Mais Procurado</span>
-                <div class="card-title">Teclado Mecânico RGB Switch Blue</div>
-                <div class="price">R$ 189,90</div>
-                <a href="LINK_DO_SEU_PRODUTO" target="_blank" class="buy-btn">VER NA SHOPEE</a>
+    <div class="container">
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" class="item-img">
+            <div class="item-details">
+                <span class="item-cat">Calçados</span>
+                <div class="item-name">Tênis Esportivo Air Max Evolution - Unissex</div>
+                <div class="stars">★★★★★ (1.2k)</div>
+                <div class="price-box">
+                    <div class="old-p">R$ 349,90</div>
+                    <div class="new-p">R$ 199,00</div>
+                    <div class="parcela">3x de R$ 66,33 sem juros</div>
+                </div>
+                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=500&q=80" class="card-img">
-            <div class="card-body">
-                <span class="tag">Performance</span>
-                <div class="card-title">Mouse Gamer Pro 12000 DPI</div>
-                <div class="price">R$ 79,90</div>
-                <a href="LINK_DO_SEU_PRODUTO" target="_blank" class="buy-btn">VER NA SHOPEE</a>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400" class="item-img">
+            <div class="item-details">
+                <span class="item-cat">Computadores</span>
+                <div class="item-name">PC Gamer Full Setup i7 + RTX 3060 16GB</div>
+                <div class="stars">★★★★★ (89)</div>
+                <div class="price-box">
+                    <div class="old-p">R$ 5.400,00</div>
+                    <div class="new-p">R$ 4.299,00</div>
+                    <div class="parcela">12x de R$ 358,25</div>
+                </div>
+                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80" class="card-img">
-            <div class="card-body">
-                <span class="tag">Ultra Wide</span>
-                <div class="card-title">Monitor Gamer 144Hz 1ms</div>
-                <div class="price">R$ 1.150,00</div>
-                <a href="LINK_DO_SEU_PRODUTO" target="_blank" class="buy-btn">VER NA SHOPEE</a>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400" class="item-img">
+            <div class="item-details">
+                <span class="item-cat">Automotivo</span>
+                <div class="item-name">Central Multimídia Android 10" Universal GPS/BT</div>
+                <div class="stars">★★★★★ (245)</div>
+                <div class="price-box">
+                    <div class="old-p">R$ 890,00</div>
+                    <div class="new-p">R$ 647,00</div>
+                    <div class="parcela">Frete Grátis</div>
+                </div>
+                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
+            </div>
+        </div>
+
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400" class="item-img">
+            <div class="item-details">
+                <span class="item-cat">Vestuário</span>
+                <div class="item-name">Kit 10 Cuecas Boxer Algodão Premium Antissuor</div>
+                <div class="stars">★★★★★ (4.8k)</div>
+                <div class="price-box">
+                    <div class="old-p">R$ 120,00</div>
+                    <div class="new-p">R$ 89,90</div>
+                    <div class="parcela">Melhor Preço do Ano</div>
+                </div>
+                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Theus Shops - Todos os direitos reservados.</p>
-        <p style="font-size: 0.8em;">Site desenvolvido para Afiliados Shopee</p>
+        <div class="logo"><img src="https://i.postimg.cc/ZnK5r79X/logo.jpg"></div>
+        <p><strong>Theus Shops</strong> - O seu Shopping Virtual oficial.</p>
+        <div class="secure-icons">
+            <span>🛡️ Site Verificado</span>
+            <span>💳 Pagamento Shopee</span>
+            <span>📦 Entrega Garantida</span>
+        </div>
+        <p style="font-size: 12px; color: #999;">Os preços e estoque podem variar. O fechamento da compra ocorre no site oficial da Shopee.</p>
     </footer>
 
 </body>
