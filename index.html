@@ -3,129 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theus Shops | Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Theus Shops | Marketplace Profissional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --shopee: #ee4d2d; --bg: #f4f4f4; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; overflow-x: hidden; }
+        :root { --shopee: #ee4d2d; --bg: #f5f5f5; --text: #333; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
 
-        /* Header e Nav */
-        header { background: #fff; padding: 15px 5%; display: flex; align-items: center; border-bottom: 2px solid var(--shopee); position: sticky; top: 0; z-index: 100; }
-        .logo img { height: 50px; cursor: pointer; transition: 0.3s; }
-        .logo img:hover { transform: scale(1.1); }
-        
+        /* Header com Carrinho */
+        header { background: #fff; padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--shopee); position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 45px; }
         .search { flex-grow: 1; margin: 0 30px; display: flex; }
-        .search input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px 0 0 5px; outline: none; }
-        .search button { background: var(--shopee); color: #fff; border: none; padding: 0 20px; border-radius: 0 5px 5px 0; font-weight: bold; cursor: pointer; }
-
-        .category-nav { background: #fff; display: flex; justify-content: center; padding: 10px; gap: 15px; border-bottom: 1px solid #eee; }
-        .cat-btn { padding: 10px 20px; border: none; background: none; font-weight: 600; cursor: pointer; border-radius: 20px; transition: 0.3s; }
-        .cat-btn.active, .cat-btn:hover { background: var(--shopee); color: #fff; }
-
-        /* Banner */
-        .hero { background: #1a1a1a; color: #fff; padding: 50px; text-align: center; }
-        .hero h1 { margin: 0; font-size: 32px; text-transform: uppercase; }
-
-        /* Vitrine */
-        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; padding: 0 20px; }
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; transition: 0.4s; border: 1px solid #eee; opacity: 0; transform: translateY(20px); }
-        .product-card.show { opacity: 1; transform: translateY(0); }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .p-info { padding: 20px; }
-        .price { font-size: 24px; font-weight: 800; display: block; margin: 10px 0; }
+        .search input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px 0 0 4px; outline: none; }
+        .search button { background: var(--shopee); color: #fff; border: none; padding: 0 20px; border-radius: 0 4px 4px 0; cursor: pointer; }
         
-        .buy-btn { display: block; background: var(--shopee); color: #fff; text-decoration: none; text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; transition: 0.3s; }
-        .buy-btn:hover { filter: brightness(1.1); box-shadow: 0 5px 15px rgba(238, 77, 45, 0.4); }
+        .cart-icon { position: relative; font-size: 24px; cursor: pointer; }
+        .cart-count { position: absolute; top: -8px; right: -10px; background: var(--shopee); color: #fff; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
 
-        /* Botão Suporte Flutuante */
-        .support-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); cursor: pointer; z-index: 999; transition: 0.3s; }
-        .support-btn:hover { transform: scale(1.1) rotate(10deg); }
+        /* Vitrine Geral */
+        .container { max-width: 1200px; margin: 30px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 20px; }
+        .product-card { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .p-info { padding: 15px; }
+        .p-price { font-size: 20px; font-weight: 800; color: var(--shopee); margin: 10px 0; }
 
-        /* Overlay do Checkout (Falso) */
-        .checkout-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .checkout-modal { background: #fff; width: 90%; max-width: 450px; padding: 30px; border-radius: 15px; position: relative; }
-        .close-checkout { position: absolute; top: 15px; right: 15px; font-size: 20px; cursor: pointer; }
-        .payment-opt { border: 2px solid #eee; padding: 15px; border-radius: 10px; margin-top: 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.3s; }
-        .payment-opt:hover { border-color: var(--shopee); background: #fff9f8; }
-        .final-btn { background: #28a745; color: #fff; border: none; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+        /* Página de Detalhes (Modal que sobrepõe tudo) */
+        #product-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; display: none; overflow-y: auto; }
+        .detail-header { padding: 15px 5%; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; background: #fff; }
+        
+        .detail-container { max-width: 1100px; margin: 20px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px; }
+        .detail-img img { width: 100%; border-radius: 8px; border: 1px solid #eee; }
+        
+        .timer { background: #fff2f0; color: var(--shopee); padding: 10px; border-radius: 4px; font-weight: bold; margin-bottom: 20px; display: inline-block; }
+        .detail-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .detail-price { font-size: 32px; font-weight: 800; color: var(--shopee); margin: 20px 0; }
+        
+        .specs-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .specs-table td { padding: 10px; border: 1px solid #eee; font-size: 14px; }
+        .specs-table td:first-child { background: #f9f9f9; width: 40%; font-weight: 600; }
+
+        .action-btns { display: flex; gap: 15px; margin-top: 30px; }
+        .btn-add { flex: 1; padding: 15px; border: 1px solid var(--shopee); color: var(--shopee); background: #fff9f8; font-weight: bold; cursor: pointer; }
+        .btn-buy { flex: 1; padding: 15px; background: var(--shopee); color: #fff; border: none; font-weight: bold; cursor: pointer; }
+
+        /* Botão Suporte */
+        .help-fab { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><img src="https://i.postimg.cc/ZnK5r79X/logo.jpg"></div>
-        <div class="search">
-            <input type="text" placeholder="Pesquisar produtos...">
-            <button>BUSCAR</button>
-        </div>
+        <div class="search"><input type="text" placeholder="Buscar na Theus Shops..."><button>BUSCAR</button></div>
+        <div class="cart-icon">🛒 <span class="cart-count" id="cart-count">0</span></div>
     </header>
 
-    <nav class="category-nav">
-        <button class="cat-btn active" onclick="filter('tudo')">TUDO</button>
-        <button class="cat-btn" onclick="filter('eletronicos')">ELETRÔNICOS</button>
-        <button class="cat-btn" onclick="filter('moda')">MODA</button>
-        <button class="cat-btn" onclick="filter('automotivo')">AUTOMOTIVO</button>
-    </nav>
-
-    <div class="hero"><h1>ACHADINHOS EM OFERTA</h1></div>
-
-    <div class="container" id="grid">
+    <div class="container" id="main-grid">
         </div>
 
-    <div class="support-btn" onclick="alert('Iniciando chat de suporte...')">💬</div>
+    <div id="product-page">
+        <div class="detail-header">
+            <button onclick="closeProduct()" style="border:none; background:none; font-size: 24px; cursor:pointer;">←</button>
+            <span style="font-weight: 600;">Detalhes do Produto</span>
+        </div>
+        
+        <div class="detail-container">
+            <div class="detail-img">
+                <img id="detail-img-src" src="">
+                <div style="margin-top:20px;">
+                    <h3>Detalhes Do Produto</h3>
+                    <table class="specs-table">
+                        <tr><td>Categoria</td><td id="spec-cat">Shopee > Eletrônicos</td></tr>
+                        <tr><td>Estoque</td><td>Disponível</td></tr>
+                        <tr><td>Marca</td><td id="spec-brand">Premium</td></tr>
+                        <tr><td>Garantia</td><td>90 Dias</td></tr>
+                        <tr><td>Condição</td><td>Novo</td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="detail-info">
+                <div class="timer">⚡ Oferta Relâmpago termina em: <span id="timer-clock">04:59:59</span></div>
+                <h1 class="detail-title" id="detail-title-text">Nome do Produto</h1>
+                <div style="color:#ffbc00">★★★★★ (4.9) | 872 Vendidos</div>
+                <div class="detail-price" id="detail-price-text">R$ 0,00</div>
+                
+                <p style="color:#666; font-size: 14px; line-height: 1.6;">
+                    Este é um produto verificado pela equipe Theus Shops. Garantimos a melhor qualidade e o menor preço do mercado. Envio imediato com código de rastreio.
+                </p>
 
-    <div class="checkout-overlay" id="checkout">
-        <div class="checkout-modal">
-            <span class="close-checkout" onclick="closeCheckout()">✕</span>
-            <h2 style="margin-top:0">Finalizar Compra</h2>
-            <p id="check-item-name">Produto</p>
-            <div style="font-size: 24px; font-weight: 800; color: var(--shopee)" id="check-item-price">R$ 0,00</div>
-            
-            <div class="payment-opt"><span>📱</span> PIX (Aprovação Imediata)</div>
-            <div class="payment-opt"><span>💳</span> Cartão de Crédito (Até 12x)</div>
-            <div class="payment-opt"><span>📄</span> Boleto Bancário</div>
-            
-            <button class="final-btn" onclick="alert('Simulação de pagamento concluída!')">PAGAR AGORA</button>
+                <div class="action-btns">
+                    <button class="btn-add" onclick="addToCart()">ADICIONAR AO CARRINHO</button>
+                    <button class="btn-buy" onclick="alert('Indo para Checkout...')">COMPRAR AGORA</button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="help-fab" onclick="alert('Iniciando chat de suporte...')">💬</div>
+
     <script>
         const produtos = [
-            { cat: 'moda', nome: 'Tênis Air Max Evolution', preco: '189,90', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400' },
-            { cat: 'eletronicos', nome: 'Monitor Gamer 27" 144Hz', preco: '1.120,00', img: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400' },
-            { cat: 'automotivo', nome: 'Central Multimídia Android', preco: '647,00', img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400' },
-            { cat: 'moda', nome: 'Kit 10 Cuecas Boxer Premium', preco: '79,90', img: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400' }
+            { id: 1, nome: 'Tênis Esportivo Air Max Evolution', preco: '189,90', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600', cat: 'Calçados', brand: 'Nike Pro' },
+            { id: 2, nome: 'Monitor Gamer Curvo 27" 144Hz', preco: '1.120,00', img: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600', cat: 'Hardware', brand: 'Theus Tech' },
+            { id: 3, nome: 'Smartphone Poco C85 256GB NFC', preco: '720,72', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600', cat: 'Celulares', brand: 'Xiaomi' }
         ];
 
-        function filter(cat) {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
-            const list = cat === 'tudo' ? produtos : produtos.filter(p => p.cat === cat);
-            
-            list.forEach((p, i) => {
+        let cart = 0;
+
+        function init() {
+            const grid = document.getElementById('main-grid');
+            produtos.forEach(p => {
                 grid.innerHTML += `
-                    <div class="product-card" style="transition-delay: ${i*0.1}s">
+                    <div class="product-card" onclick="openProduct(${p.id})">
                         <img src="${p.img}">
                         <div class="p-info">
-                            <strong>${p.nome}</strong>
-                            <span class="price">R$ ${p.preco}</span>
-                            <button class="buy-btn" onclick="openCheckout('${p.nome}', '${p.preco}')">COMPRAR AGORA</button>
+                            <div style="font-size:14px; height:40px; overflow:hidden">${p.nome}</div>
+                            <div class="p-price">R$ ${p.preco}</div>
+                            <div style="font-size:12px; color:#888">Frete Grátis</div>
                         </div>
                     </div>`;
             });
-            setTimeout(() => document.querySelectorAll('.product-card').forEach(c => c.classList.add('show')), 50);
         }
 
-        function openCheckout(nome, preco) {
-            document.getElementById('check-item-name').innerText = nome;
-            document.getElementById('check-item-price').innerText = 'R$ ' + preco;
-            document.getElementById('checkout').style.display = 'flex';
+        function openProduct(id) {
+            const p = produtos.find(x => x.id === id);
+            document.getElementById('detail-title-text').innerText = p.nome;
+            document.getElementById('detail-price-text').innerText = 'R$ ' + p.preco;
+            document.getElementById('detail-img-src').src = p.img;
+            document.getElementById('spec-cat').innerText = 'Shopee > ' + p.cat;
+            document.getElementById('spec-brand').innerText = p.brand;
+            document.getElementById('product-page').style.display = 'block';
+            window.scrollTo(0,0);
         }
 
-        function closeCheckout() { document.getElementById('checkout').style.display = 'none'; }
+        function closeProduct() { document.getElementById('product-page').style.display = 'none'; }
 
-        filter('tudo');
+        function addToCart() {
+            cart++;
+            document.getElementById('cart-count').innerText = cart;
+            alert('Produto adicionado ao carrinho!');
+        }
+
+        // Timer de mentira
+        setInterval(() => {
+            document.getElementById('timer-clock').innerText = "04:" + Math.floor(Math.random() * 59) + ":" + Math.floor(Math.random() * 59);
+        }, 1000);
+
+        init();
     </script>
 </body>
 </html>
