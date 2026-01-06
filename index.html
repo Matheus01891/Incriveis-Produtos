@@ -3,44 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theus Shops | O Shopping de Tudo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Theus Shops | Marketplace Geral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ee4d2d;
-            --secondary: #2673dd;
-            --bg: #f5f5f5;
-            --text: #333;
-            --border: #e0e0e0;
+            --shopee-orange: #ee4d2d;
+            --bg-gray: #f5f5f5;
+            --text-main: #222;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-gray);
             margin: 0;
-            padding: 0;
-            color: var(--text);
+            color: var(--text-main);
+            scroll-behavior: smooth;
         }
 
-        /* Barra de Alerta e Segurança */
-        .safety-bar {
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-            padding: 10px 5%;
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: #666;
-        }
-
-        /* Header Estilo Marketplace */
+        /* Header Principal */
         header {
             background: #fff;
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex;
             align-items: center;
-            gap: 40px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -49,251 +36,228 @@
         .logo img {
             height: 50px;
             width: auto;
-            border-radius: 4px;
         }
 
         .search-container {
             flex-grow: 1;
+            margin: 0 40px;
             display: flex;
         }
 
         .search-container input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid var(--primary);
+            border: 1px solid #ccc;
             border-radius: 4px 0 0 4px;
             outline: none;
+            font-size: 14px;
         }
 
         .search-btn {
-            background: var(--primary);
+            background: var(--shopee-orange);
             color: #fff;
             border: none;
             padding: 0 25px;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
         }
 
-        /* Menu Geral de Departamentos */
-        .dept-nav {
+        /* Menu de Filtros (Categorias Funcionais) */
+        .category-nav {
             background: #fff;
-            border-bottom: 1px solid var(--border);
-            padding: 0 5%;
+            border-bottom: 1px solid #eee;
             display: flex;
+            justify-content: center;
+            padding: 0 5%;
             overflow-x: auto;
-            white-space: nowrap;
-            gap: 25px;
         }
 
-        .dept-nav a {
-            padding: 15px 0;
-            text-decoration: none;
-            color: #444;
-            font-size: 14px;
-            font-weight: 500;
+        .category-btn {
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
             border-bottom: 3px solid transparent;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
-        .dept-nav a:hover {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
+        .category-btn.active, .category-btn:hover {
+            color: var(--shopee-orange);
+            border-bottom: 3px solid var(--shopee-orange);
         }
 
-        /* Banner Principal Variado */
-        .main-banner {
-            background: linear-gradient(90deg, #222, #444);
+        /* Banner de Ofertas */
+        .promo-banner {
+            background: #222;
             color: #fff;
-            padding: 50px 5%;
             text-align: center;
+            padding: 40px 20px;
         }
 
-        .main-banner h1 { margin: 0; font-size: 2.5em; }
-        .main-banner p { color: var(--primary); font-weight: bold; font-size: 1.2em; }
+        .promo-banner h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
+        .promo-banner p { color: var(--shopee-orange); font-weight: 600; margin-top: 5px; }
 
-        /* Grid de Produtos Geral */
+        /* Vitrine de Produtos */
         .container {
-            max-width: 1300px;
-            margin: 30px auto;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
 
-        .item-card {
+        .product-card {
             background: #fff;
-            border: 1px solid var(--border);
             border-radius: 4px;
+            border: 1px solid #e0e0e0;
             transition: 0.3s;
             display: flex;
             flex-direction: column;
         }
 
-        .item-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-color: #bbb;
+        .product-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
         }
 
-        .item-img {
+        .product-card img {
             width: 100%;
             aspect-ratio: 1/1;
             object-fit: cover;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .item-details {
-            padding: 15px;
-            flex-grow: 1;
-        }
-
-        .item-cat { font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
-        .item-name { font-size: 15px; margin: 8px 0; color: #333; height: 36px; overflow: hidden; line-height: 1.2; }
+        .product-info { padding: 15px; flex-grow: 1; }
+        .product-title { font-size: 14px; color: #333; height: 38px; overflow: hidden; line-height: 1.3; margin-bottom: 10px; }
+        .product-price { font-size: 22px; font-weight: 800; color: #333; }
+        .old-price { font-size: 12px; color: #999; text-decoration: line-through; }
         
-        .stars { color: #ffbc00; font-size: 12px; margin-bottom: 10px; }
-
-        .price-box { margin-top: auto; }
-        .old-p { font-size: 12px; color: #999; text-decoration: line-through; }
-        .new-p { font-size: 22px; color: #333; font-weight: bold; }
-        .parcela { font-size: 12px; color: #28a745; }
-
-        .buy-link {
+        .buy-button {
             display: block;
-            background: var(--primary);
+            background: var(--shopee-orange);
             color: #fff;
             text-decoration: none;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
             margin-top: 15px;
             border-radius: 4px;
-            font-weight: bold;
-            transition: 0.2s;
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        .buy-link:hover { opacity: 0.9; }
-
-        /* Footer Robusto */
         footer {
             background: #fff;
-            border-top: 2px solid var(--primary);
-            padding: 40px 5%;
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
         }
-
-        .secure-icons { display: flex; gap: 20px; opacity: 0.6; }
-
     </style>
 </head>
 <body>
 
-    <div class="safety-bar">
-        <span>🔒 Ambiente Seguro e Criptografado</span>
-        <span>📞 Suporte 24h</span>
-        <span>🚚 Enviamos para todo Brasil</span>
-    </div>
-
     <header>
-        <a href="#" class="logo">
+        <div class="logo">
             <img src="https://i.postimg.cc/ZnK5r79X/logo.jpg" alt="Theus Shops">
-        </a>
+        </div>
         <div class="search-container">
-            <input type="text" placeholder="Procure qualquer produto na Theus Shops...">
+            <input type="text" placeholder="Pesquisar em toda a loja...">
             <button class="search-btn">BUSCAR</button>
         </div>
     </header>
 
-    <div class="dept-nav">
-        <a href="#">TUDO</a>
-        <a href="#">ELETRÔNICOS</a>
-        <a href="#">AUTOMOTIVO</a>
-        <a href="#">MODA</a>
-        <a href="#">CASA</a>
-        <a href="#">ESPORTES</a>
-        <a href="#">BEBE</a>
-    </div>
+    <nav class="category-nav">
+        <button class="category-btn active" onclick="filterProduct('tudo')">Tudo</button>
+        <button class="category-btn" onclick="filterProduct('eletronicos')">Eletrônicos</button>
+        <button class="category-btn" onclick="filterProduct('automotivo')">Automotivo</button>
+        <button class="category-btn" onclick="filterProduct('moda')">Moda</button>
+        <button class="category-btn" onclick="filterProduct('esportes')">Esportes</button>
+    </nav>
 
-    <section class="main-banner">
+    <section class="promo-banner">
         <h1>OFERTAS GERAIS - THEUS SHOPS</h1>
-        <p>Até 70% de Desconto nos Achadinhos do Mês</p>
+        <p>CONFIRA OS MELHORES ACHADINHOS DA SEMANA</p>
     </section>
 
-    <div class="container">
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" class="item-img">
-            <div class="item-details">
-                <span class="item-cat">Calçados</span>
-                <div class="item-name">Tênis Esportivo Air Max Evolution - Unissex</div>
-                <div class="stars">★★★★★ (1.2k)</div>
-                <div class="price-box">
-                    <div class="old-p">R$ 349,90</div>
-                    <div class="new-p">R$ 199,00</div>
-                    <div class="parcela">3x de R$ 66,33 sem juros</div>
-                </div>
-                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
+    <div class="container" id="products">
+        
+        <div class="product-card item moda">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400">
+            <div class="product-info">
+                <div class="product-title">Tênis Esportivo Air Max - Edição Especial</div>
+                <div class="old-price">R$ 299,00</div>
+                <div class="product-price">R$ 189,90</div>
+                <a href="SEU_LINK_AQUI" class="buy-button">IR PARA LOJA</a>
             </div>
         </div>
 
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400" class="item-img">
-            <div class="item-details">
-                <span class="item-cat">Computadores</span>
-                <div class="item-name">PC Gamer Full Setup i7 + RTX 3060 16GB</div>
-                <div class="stars">★★★★★ (89)</div>
-                <div class="price-box">
-                    <div class="old-p">R$ 5.400,00</div>
-                    <div class="new-p">R$ 4.299,00</div>
-                    <div class="parcela">12x de R$ 358,25</div>
-                </div>
-                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
+        <div class="product-card item eletronicos">
+            <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400">
+            <div class="product-info">
+                <div class="product-title">Monitor Gamer Curvo 27" 144Hz Full HD</div>
+                <div class="old-price">R$ 1.450,00</div>
+                <div class="product-price">R$ 1.120,00</div>
+                <a href="SEU_LINK_AQUI" class="buy-button">IR PARA LOJA</a>
             </div>
         </div>
 
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400" class="item-img">
-            <div class="item-details">
-                <span class="item-cat">Automotivo</span>
-                <div class="item-name">Central Multimídia Android 10" Universal GPS/BT</div>
-                <div class="stars">★★★★★ (245)</div>
-                <div class="price-box">
-                    <div class="old-p">R$ 890,00</div>
-                    <div class="new-p">R$ 647,00</div>
-                    <div class="parcela">Frete Grátis</div>
-                </div>
-                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
+        <div class="product-card item automotivo">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400">
+            <div class="product-info">
+                <div class="product-title">Central Multimídia Android 10 Universal GPS</div>
+                <div class="old-price">R$ 890,00</div>
+                <div class="product-price">R$ 647,00</div>
+                <a href="SEU_LINK_AQUI" class="buy-button">IR PARA LOJA</a>
             </div>
         </div>
 
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400" class="item-img">
-            <div class="item-details">
-                <span class="item-cat">Vestuário</span>
-                <div class="item-name">Kit 10 Cuecas Boxer Algodão Premium Antissuor</div>
-                <div class="stars">★★★★★ (4.8k)</div>
-                <div class="price-box">
-                    <div class="old-p">R$ 120,00</div>
-                    <div class="new-p">R$ 89,90</div>
-                    <div class="parcela">Melhor Preço do Ano</div>
-                </div>
-                <a href="LINK_SHOPEE" class="buy-link">IR PARA LOJA</a>
+        <div class="product-card item moda">
+            <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400">
+            <div class="product-info">
+                <div class="product-title">Kit 10 Cuecas Boxer Algodão Confort</div>
+                <div class="old-price">R$ 120,00</div>
+                <div class="product-price">R$ 79,90</div>
+                <a href="SEU_LINK_AQUI" class="buy-button">IR PARA LOJA</a>
             </div>
         </div>
+
     </div>
 
     <footer>
-        <div class="logo"><img src="https://i.postimg.cc/ZnK5r79X/logo.jpg"></div>
-        <p><strong>Theus Shops</strong> - O seu Shopping Virtual oficial.</p>
-        <div class="secure-icons">
-            <span>🛡️ Site Verificado</span>
-            <span>💳 Pagamento Shopee</span>
-            <span>📦 Entrega Garantida</span>
-        </div>
-        <p style="font-size: 12px; color: #999;">Os preços e estoque podem variar. O fechamento da compra ocorre no site oficial da Shopee.</p>
+        <img src="https://i.postimg.cc/ZnK5r79X/logo.jpg" style="height: 30px; opacity: 0.6; margin-bottom: 10px;"><br>
+        &copy; 2026 Theus Shops - Melhores Preços da Shopee.
     </footer>
 
+    <script>
+        function filterProduct(value) {
+            let buttons = document.querySelectorAll(".category-btn");
+            buttons.forEach((button) => {
+                if (value.toUpperCase() == button.innerText.toUpperCase()) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+            });
+
+            let elements = document.querySelectorAll(".item");
+            elements.forEach((element) => {
+                if (value == "tudo") {
+                    element.style.display = "flex";
+                } else {
+                    if (element.classList.contains(value)) {
+                        element.style.display = "flex";
+                    } else {
+                        element.style.display = "none";
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
