@@ -3,255 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theus Shops | Marketplace Vivo</title>
+    <title>Theus Shops | Oficial</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        :root {
-            --shopee-orange: #ee4d2d;
-            --bg-gray: #f5f5f5;
-            --text-main: #222;
-        }
+        :root { --shopee: #ee4d2d; --bg: #f4f4f4; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; overflow-x: hidden; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-gray);
-            margin: 0;
-            overflow-x: hidden;
-        }
-
-        /* Header com efeito de vidro ao rolar */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid var(--shopee-orange);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: 0.3s;
-        }
-
-        .logo img {
-            height: 55px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover { transform: scale(1.1) rotate(-2deg); }
-
-        .search-container {
-            flex-grow: 1;
-            margin: 0 40px;
-            display: flex;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 12px 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px 0 0 8px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .search-container input:focus { border-color: var(--shopee-orange); }
-
-        .search-btn {
-            background: var(--shopee-orange);
-            color: #fff;
-            border: none;
-            padding: 0 25px;
-            border-radius: 0 8px 8px 0;
-            cursor: pointer;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .search-btn:hover { filter: brightness(1.2); }
-
-        /* Navegação com animação de barra */
-        .category-nav {
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-            gap: 10px;
-        }
-
-        .category-btn {
-            padding: 12px 25px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .category-btn.active, .category-btn:hover {
-            background: var(--shopee-orange);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(238, 77, 45, 0.3);
-        }
-
-        /* Banner Dinâmico */
-        .hero {
-            background: linear-gradient(45deg, #111, #333);
-            color: #fff;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 { font-size: 36px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .hero p { color: var(--shopee-orange); font-weight: 800; font-size: 18px; margin-top: 10px; }
-
-        /* Grid Animada */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: all 0.4s ease;
-            opacity: 0; /* Começa invisível para animação JS */
-            transform: translateY(20px);
-        }
-
-        .product-card.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .product-card:hover {
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transform: translateY(-10px);
-        }
-
-        .img-box {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-card img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .product-card:hover img { transform: scale(1.15); }
-
-        .product-info { padding: 20px; text-align: left; }
-        .price { font-size: 24px; font-weight: 800; color: #111; display: block; margin: 10px 0; }
+        /* Header e Nav */
+        header { background: #fff; padding: 15px 5%; display: flex; align-items: center; border-bottom: 2px solid var(--shopee); position: sticky; top: 0; z-index: 100; }
+        .logo img { height: 50px; cursor: pointer; transition: 0.3s; }
+        .logo img:hover { transform: scale(1.1); }
         
-        .buy-button {
-            display: block;
-            background: var(--shopee-orange);
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: 0.3s;
-            box-shadow: 0 4px 0px #b03319;
-        }
+        .search { flex-grow: 1; margin: 0 30px; display: flex; }
+        .search input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px 0 0 5px; outline: none; }
+        .search button { background: var(--shopee); color: #fff; border: none; padding: 0 20px; border-radius: 0 5px 5px 0; font-weight: bold; cursor: pointer; }
 
-        .buy-button:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0px #b03319;
-        }
+        .category-nav { background: #fff; display: flex; justify-content: center; padding: 10px; gap: 15px; border-bottom: 1px solid #eee; }
+        .cat-btn { padding: 10px 20px; border: none; background: none; font-weight: 600; cursor: pointer; border-radius: 20px; transition: 0.3s; }
+        .cat-btn.active, .cat-btn:hover { background: var(--shopee); color: #fff; }
+
+        /* Banner */
+        .hero { background: #1a1a1a; color: #fff; padding: 50px; text-align: center; }
+        .hero h1 { margin: 0; font-size: 32px; text-transform: uppercase; }
+
+        /* Vitrine */
+        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; padding: 0 20px; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; transition: 0.4s; border: 1px solid #eee; opacity: 0; transform: translateY(20px); }
+        .product-card.show { opacity: 1; transform: translateY(0); }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .p-info { padding: 20px; }
+        .price { font-size: 24px; font-weight: 800; display: block; margin: 10px 0; }
+        
+        .buy-btn { display: block; background: var(--shopee); color: #fff; text-decoration: none; text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; transition: 0.3s; }
+        .buy-btn:hover { filter: brightness(1.1); box-shadow: 0 5px 15px rgba(238, 77, 45, 0.4); }
+
+        /* Botão Suporte Flutuante */
+        .support-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); cursor: pointer; z-index: 999; transition: 0.3s; }
+        .support-btn:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* Overlay do Checkout (Falso) */
+        .checkout-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .checkout-modal { background: #fff; width: 90%; max-width: 450px; padding: 30px; border-radius: 15px; position: relative; }
+        .close-checkout { position: absolute; top: 15px; right: 15px; font-size: 20px; cursor: pointer; }
+        .payment-opt { border: 2px solid #eee; padding: 15px; border-radius: 10px; margin-top: 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.3s; }
+        .payment-opt:hover { border-color: var(--shopee); background: #fff9f8; }
+        .final-btn { background: #28a745; color: #fff; border: none; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <img src="https://i.postimg.cc/ZnK5r79X/logo.jpg" alt="Theus Shops">
-        </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="O que você deseja encontrar hoje?">
-            <button class="search-btn">BUSCAR</button>
+        <div class="logo"><img src="https://i.postimg.cc/ZnK5r79X/logo.jpg"></div>
+        <div class="search">
+            <input type="text" placeholder="Pesquisar produtos...">
+            <button>BUSCAR</button>
         </div>
     </header>
 
     <nav class="category-nav">
-        <button class="category-btn active" data-filter="tudo">TUDO</button>
-        <button class="category-btn" data-filter="eletronicos">ELETRÔNICOS</button>
-        <button class="category-btn" data-filter="automotivo">AUTOMOTIVO</button>
-        <button class="category-btn" data-filter="moda">MODA</button>
+        <button class="cat-btn active" onclick="filter('tudo')">TUDO</button>
+        <button class="cat-btn" onclick="filter('eletronicos')">ELETRÔNICOS</button>
+        <button class="cat-btn" onclick="filter('moda')">MODA</button>
+        <button class="cat-btn" onclick="filter('automotivo')">AUTOMOTIVO</button>
     </nav>
 
-    <section class="hero">
-        <h1 class="animate__animated animate__fadeInDown">OFERTAS GERAIS - THEUS SHOPS</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s">PRODUTOS SELECIONADOS COM PREÇO DE ATACADO</p>
-    </section>
+    <div class="hero"><h1>ACHADINHOS EM OFERTA</h1></div>
 
-    <div class="container" id="productGrid">
+    <div class="container" id="grid">
         </div>
 
+    <div class="support-btn" onclick="alert('Iniciando chat de suporte...')">💬</div>
+
+    <div class="checkout-overlay" id="checkout">
+        <div class="checkout-modal">
+            <span class="close-checkout" onclick="closeCheckout()">✕</span>
+            <h2 style="margin-top:0">Finalizar Compra</h2>
+            <p id="check-item-name">Produto</p>
+            <div style="font-size: 24px; font-weight: 800; color: var(--shopee)" id="check-item-price">R$ 0,00</div>
+            
+            <div class="payment-opt"><span>📱</span> PIX (Aprovação Imediata)</div>
+            <div class="payment-opt"><span>💳</span> Cartão de Crédito (Até 12x)</div>
+            <div class="payment-opt"><span>📄</span> Boleto Bancário</div>
+            
+            <button class="final-btn" onclick="alert('Simulação de pagamento concluída!')">PAGAR AGORA</button>
+        </div>
+    </div>
+
     <script>
-        // Banco de dados de produtos para o site não ficar estático
         const produtos = [
-            { id: 1, cat: 'moda', nome: 'Tênis Esportivo Air Max Evolution', preco: '189,90', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400' },
-            { id: 2, cat: 'eletronicos', nome: 'Monitor Gamer Curvo 27" 144Hz', preco: '1.120,00', img: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400' },
-            { id: 3, cat: 'automotivo', nome: 'Central Multimídia Android 10"', preco: '647,00', img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400' },
-            { id: 4, cat: 'moda', nome: 'Kit 10 Cuecas Boxer Confort', preco: '79,90', img: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400' }
+            { cat: 'moda', nome: 'Tênis Air Max Evolution', preco: '189,90', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400' },
+            { cat: 'eletronicos', nome: 'Monitor Gamer 27" 144Hz', preco: '1.120,00', img: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400' },
+            { cat: 'automotivo', nome: 'Central Multimídia Android', preco: '647,00', img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400' },
+            { cat: 'moda', nome: 'Kit 10 Cuecas Boxer Premium', preco: '79,90', img: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=400' }
         ];
 
-        const grid = document.getElementById('productGrid');
-
-        function displayProducts(filter = 'tudo') {
+        function filter(cat) {
+            const grid = document.getElementById('grid');
             grid.innerHTML = '';
-            const filtered = filter === 'tudo' ? produtos : produtos.filter(p => p.cat === filter);
+            const list = cat === 'tudo' ? produtos : produtos.filter(p => p.cat === cat);
             
-            filtered.forEach((p, index) => {
-                const card = `
-                    <div class="product-card item ${p.cat}" style="transition-delay: ${index * 0.1}s">
-                        <div class="img-box"><img src="${p.img}"></div>
-                        <div class="product-info">
-                            <div class="product-title"><strong>${p.nome}</strong></div>
+            list.forEach((p, i) => {
+                grid.innerHTML += `
+                    <div class="product-card" style="transition-delay: ${i*0.1}s">
+                        <img src="${p.img}">
+                        <div class="p-info">
+                            <strong>${p.nome}</strong>
                             <span class="price">R$ ${p.preco}</span>
-                            <a href="#" class="buy-button">IR PARA LOJA</a>
+                            <button class="buy-btn" onclick="openCheckout('${p.nome}', '${p.preco}')">COMPRAR AGORA</button>
                         </div>
-                    </div>
-                `;
-                grid.innerHTML += card;
+                    </div>`;
             });
-
-            // Trigger para animação de entrada
-            setTimeout(() => {
-                document.querySelectorAll('.product-card').forEach(c => c.classList.add('show'));
-            }, 50);
+            setTimeout(() => document.querySelectorAll('.product-card').forEach(c => c.classList.add('show')), 50);
         }
 
-        // Lógica dos Botões de Filtro
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelector('.category-btn.active').classList.remove('active');
-                btn.classList.add('active');
-                displayProducts(btn.getAttribute('data-filter'));
-            });
-        });
+        function openCheckout(nome, preco) {
+            document.getElementById('check-item-name').innerText = nome;
+            document.getElementById('check-item-price').innerText = 'R$ ' + preco;
+            document.getElementById('checkout').style.display = 'flex';
+        }
 
-        // Inicializar
-        displayProducts();
+        function closeCheckout() { document.getElementById('checkout').style.display = 'none'; }
+
+        filter('tudo');
     </script>
 </body>
 </html>
