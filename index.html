@@ -3,99 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Achadinhos Shopee</title>
+    <title>Theus Shops | Melhores Achadinhos</title>
     <style>
+        /* Estilização Geral */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0;
+            color: #333;
         }
+
+        /* Topo da Loja */
         header {
+            background-color: #ee4d2d;
+            color: white;
+            padding: 40px 20px;
             text-align: center;
-            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        h1 { color: #ee4d2d; } /* Cor oficial da Shopee */
-        
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Grade de Produtos */
         .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
+
+        /* Card de Produto */
         .card {
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
         }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
         .card img {
-            max-width: 100%;
-            border-radius: 5px;
-            height: 200px;
+            width: 100%;
+            height: 250px;
             object-fit: cover;
         }
-        .card h3 {
-            font-size: 18px;
-            margin: 10px 0;
-            height: 45px;
+
+        .info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .info h3 {
+            font-size: 1.1em;
+            margin: 0 0 10px 0;
+            color: #444;
+            height: 50px;
             overflow: hidden;
         }
+
         .price {
+            font-size: 1.4em;
             color: #ee4d2d;
             font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
+        /* Botão de Compra */
         .btn-compra {
             display: block;
             background-color: #ee4d2d;
             color: white;
             text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            transition: background 0.3s;
         }
+
         .btn-compra:hover {
             background-color: #d73d1f;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🛒 Meus Achadinhos Shopee</h1>
-        <p>As melhores ofertas selecionadas para você!</p>
+        <h1>THEUS SHOPS</h1>
+        <p>Os melhores produtos da Shopee selecionados a dedo!</p>
     </header>
 
     <div class="container">
         <div class="card">
-            <img src="https://via.placeholder.com/200" alt="Produto 1">
-            <h3>Nome do Produto da Shopee Aqui</h3>
-            <p class="price">R$ 49,90</p>
-            <a href="SEU_LINK_AQUI" target="_blank" class="btn-compra">VER NA SHOPEE</a>
+            <img src="https://via.placeholder.com/300x300?text=Foto+do+Produto" alt="Produto 1">
+            <div class="info">
+                <h3>Nome do Produto Top Aqui</h3>
+                <p class="price">R$ 59,90</p>
+                <a href="LINK_AFILIADO_AQUI" target="_blank" class="btn-compra">Comprar na Shopee</a>
+            </div>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200" alt="Produto 2">
-            <h3>Outro Item Incrível</h3>
-            <p class="price">R$ 29,90</p>
-            <a href="SEU_LINK_AQUI" target="_blank" class="btn-compra">VER NA SHOPEE</a>
+            <img src="https://via.placeholder.com/300x300?text=Foto+do+Produto" alt="Produto 2">
+            <div class="info">
+                <h3>Nome do Segundo Produto</h3>
+                <p class="price">R$ 120,00</p>
+                <a href="LINK_AFILIADO_AQUI" target="_blank" class="btn-compra">Comprar na Shopee</a>
+            </div>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200" alt="Produto 3">
-            <h3>Mais um Achadinho</h3>
-            <p class="price">R$ 89,90</p>
-            <a href="SEU_LINK_AQUI" target="_blank" class="btn-compra">VER NA SHOPEE</a>
+            <img src="https://via.placeholder.com/300x300?text=Foto+do+Produto" alt="Produto 3">
+            <div class="info">
+                <h3>Nome do Terceiro Produto</h3>
+                <p class="price">R$ 35,00</p>
+                <a href="LINK_AFILIADO_AQUI" target="_blank" class="btn-compra">Comprar na Shopee</a>
+            </div>
         </div>
     </div>
+
+    <footer>
+        &copy; 2024 Theus Shops - Todos os direitos reservados.
+    </footer>
 
 </body>
 </html>
